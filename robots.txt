@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://chadperrin.com/sitemap.xml
