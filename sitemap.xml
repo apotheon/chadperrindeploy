@@ -12,6 +12,13 @@
         </url>
     
         <url>
+            <loc>https://chadperrin.com/articles/bikes/</loc>
+            
+                <lastmod>2021-09-01</lastmod>
+            
+        </url>
+    
+        <url>
             <loc>https://chadperrin.com/articles/code/</loc>
             
                 <lastmod>2021-09-01</lastmod>
@@ -50,6 +57,11 @@
             <loc>https://chadperrin.com/articles/tools/</loc>
             
                 <lastmod>2021-09-01</lastmod>
+            
+        </url>
+    
+        <url>
+            <loc>https://chadperrin.com/bikes/</loc>
             
         </url>
     
