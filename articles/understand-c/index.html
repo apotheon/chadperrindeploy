@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Chad Perrin</title>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+
+  <body>
+    <section class="section">
+      <div class="menu header">
+        <a href="/">Home</a>
+·
+<a href="/articles">Articles</a>
+·
+<a href="/contact">Contact</a>
+·
+<a href="/license">License</a>
+
+      </div>
+
+      <div class="container column">
+        <img src="/img/chad_perrin_headshot_2016.jpg">
+
+<h4>Offsite Links</h4>
+
+<h6>More Of Me:</h6>
+<ul class="offsite">
+  <li><a href="https://copyfree.org">Copyfree Initiative</a></li>
+  <li><a href="https://singularit.us">Singular IT</a></li>
+  <li><a href="http://univacc.net">UnivAcc</a></li>
+  <li><a href="https://unixlike.us">Unix Like Us</a></li>
+  <li><a href="https://cyberpunkyear.com">Year Of Cyberpunk</a></li>
+</ul>
+
+<hr>
+
+<h6>More About Me:</h6>
+<ul class="offsite">
+  <li><a href="http://web.archive.org/web/20210718062137/http://www.googlism.com/who_is/a/apotheon/">apotheon is right</a></li>
+</ul>
+
+      </div>
+
+      <div class="container main">
+        
+<h1 class="title">Understanding C is hard.</h1>
+
+<p class="subtitle"><strong>2022-03-03</strong></p>
+
+<div class="content">
+  <p>Understanding C is hard.  It doesn't have to be quite so difficult to understand, but it is.  There are various reasons for this unfortunate fact of life, some of which may appear in the following text.  In part because of these reasons, and in part for much more mundane and common reasons particular to writing, there may be some blunders or incompleteness in this article.  I intend to update it as I notice omissions or other problems, but perhaps you've heard what they say about good intentions: the road to hell is paved with them.</p>
+<h3 id="what-it-is">What It Is</h3>
+<p>In short, this is my first pass at an attempt to write the document I wish I had available when I first started getting into C (actually long enough ago that some of what I present would have been meaningless then).</p>
+<p>It took me too long to really get C in principle, because of things I explain here that I did not know at first.  Without some of the things I mention here, I would not have crossed that line between two states: disliking C, and discovering that C programming is my favorite video game.</p>
+<p>I broke it up into two parts.  The first is a list of advice and other hopefully useful tidbits for those who wish to really &quot;get&quot; C and do it well.  The second is a list of elaborations on conditions that underlie the first list's points.  The bullet points in each list are intentionally written in such a way that their order should not matter much; I want each to be a stand-alone, reusable component of understanding the C programming language.</p>
+<h3 id="part-1">Part 1</h3>
+<p>This list of explanations is my attempt to help kick-start the process of making it easier for people who want to learn C to develop a good mindset, early on, for learning C well.</p>
+<ul>
+<li>
+<p>As Alice Maz said (in [][]), writing C is easy, but writing it well is hard.  This distinction needs to be drummed in from the start.  A big part of the problem is the vast gulf that exists between what the C standard establishes as a terrible idea for trying to write C code and what a given environment seems to allow.  Another is the simple fact that C really does let you shoot yourself in the foot if that's what you want to do, with little or no warning or handholding; it is a spinning sawblade with no guards or failsafes.  If you intend to program in C, do yourself a favor and find a free draft of whatever C standard you intend to use (c99, C11, or c23, presumably), preferably the last draft before the published standard.  The actual published, finalized document for any given C standard is expensive, but the last pre-standard draft should be functionally identical.</p>
+</li>
+<li>
+<p>Extracting notes from OpenBSD manpages about C library functions, so that people can get a clear sense of which functions to use and which to avoid, would go a long way toward helping people learn to write C well.</p>
+</li>
+<li>
+<p>GNU source code should be avoided, with a huge distance between you and it, when looking for code examples.  There are occasionally some good little bits of algorithm here and there: &quot;Even a stopped clock is right twice a day.&quot;  (This is only true for twelve-hour clocks.)  Any amount of good code is drowning in a swamp of bad, though, so unless you know what you're doing you should never even look at most GNU code, and if you do know what you're doing you will already know to stay away from GNU sources.  All of that is ignoring the licensing issue.</p>
+</li>
+<li>
+<p>Pointers are not scary.  Only the way people are (improperly) taught pointers is scary.  If pointers were properly integrated in the process of learning <em>and writing</em> C from day one, people with the capacity for programming C well would not have to fear pointers at all.  At this point, I think it's probably best to read through a book on C programming for beginners until you get to pointers, without really practicing C, then read the stuff about pointers very closely and carefully several times, then without finishing the book go back to the beginning and start over.  For every exercise and every code sample, try to figure out if and how you could write it with the addition of pointers, even if they're unnecessary, e.g. declare every variable as a pointer rather than a bare <code>char</code>, <code>int</code>, and so on.  You should not necessarily write all your code this way in the real world, but you should <em>be able to do so without fear</em>, and <em>start learning this as early as you can</em>.</p>
+</li>
+<li>
+<p>Practice (and other learning) project ideas are among the most common hurdles I see from people who are having difficulty progressing in early programming, regardless of the language.  To help with that, when you can't come up with your own ideas that fit within your skill level and perhaps push the edges of it just a bit, I suggest using a Unixy environment to help provide a straightforward context in which to come up with simple project ideas, reimplementing the simplest Unixy tools (<code>echo</code> is a great first choice, and <code>wc</code> is good not long after), learning about text stream handling including the creation of command line filters (take text input and produce text output as the primary mode of operation), and figuring out the fork-exec pattern for tool development (which will open up a lot of potential inspiration for more practice programs).  In some cases, this whole process of learning by doing can be enhanced as well by writing shell scripts (use <code>#!/bin/sh</code>, not any shebang line with <code>bash</code> in it) as prototypes for later reimplementations in C.</p>
+</li>
+<li>
+<p>Resources for learning are disappointing overall.  There aren't any comprehensively good books for learning C, unfortunately, and I would be surprised to find a comprehensively good learning resource of any other kind.  Some are very good within constraints.  For instance, my experience with K&amp;R, the <em>ANSI C Programming</em> book (second edition), is largely positive.  It falls into the same problem that essentially everything else does: teaching C with a certain level of delay and suppression of full, proper attention to pointers.  Its other issues are relatively minor, I think.  The upshot is simply that you should keep in mind that no matter what learning resource you pick up you're likely to be missing part of the full story, at minimum, and may be led wildly astray (e.g. stay away from <em>Learn C the Hard Way</em>).</p>
+</li>
+<li>
+<p>Using OpenBSD software source code as examples for one's own C development techniques is a great idea.  It tends to be simpler, cleaner, and better designed than alternatives.</p>
+</li>
+</ul>
+<h3 id="part-2">Part 2</h3>
+<p>This list is my attempt to provide some grounding for understanding why the above can help, to aid the student of C better apply advice gleaned from the above, and to inform and motivate people who would develop C instructional materials do better than those who came before.  Some of it may be a bit controversial.</p>
+<ul>
+<li>
+<p>A programming language should, ideally, come with a built-in core programming paradigm.  C does that.  C is a pointer-oriented programming language.  Because pointer-oriented programming languages were not really a thing back then, nobody realized it was a pointer-oriented programming language, so early design decisions did not take that into account and, as such, there are some quirks that obscure that fact.  Because code organizational state of the art was still fairly new then, other paradigms got applied to C retroactively in ways that obscured the fact there was a pointer-oriented paradgim lurking within.  We could have a better design for a pointer-oriented programming language, but even today people mostly haven't recognized the existence and value of a pointer-oriented programming paradigm, so I have yet to notice a proper pointer-oriented programming language project anywhere.  Even C suffers a bit in this regard, as the standards committee doesn't seem to recognize that about the language, either.</p>
+</li>
+<li>
+<p>Details of the C standard are exacting, but not entirely easy to understand in a casual skim.  C is full of tricky corners such as &quot;undefined behavior&quot;.  Referring to the standard can help you avoid creating security vulnerabilities, crashing bugs, or other problems by relying on how the compiler works on your own computer.  In reality, the fact your program compiled and seemed to work on your own machine may say nothing at all about how it will work out on someone else's, if you blunder into (for instance) implementation defined behavior in your code.</p>
+</li>
+<li>
+<p>OpenBSD devs focus a lot on a few things rather more than most others.  A couple of those things include very low-level security and reliability concerns (e.g. how to write C in pragmatic ways that support security and reliability) and thorough documentation of foundational concerns in the OpenBSD environment.  This results in OpenBSD being an excellent de facto C programming good practices resource.  OpenBSD's generally high quality C source code also serves as a practical resource for learning C programming well.  There may be some places where the C source is not the best but, as a whole, the full corpus of the OpenBSD project's C source code tends to be high quality in a straightforward and understandable manner, and it's a good place to start when looking for example code.</p>
+</li>
+<li>
+<p>The Unix userland is, itself, essentially a programming toolset.  Automating more complicated or tedious tasks using this native toolset for Unix offers a very easy way to start thinking in a programming mindset, and the limitations of shell scripting (which can be pushed far by adding awk to your skills, but that's an &quot;advanced&quot; trick for shell scripting in some respects) can quickly motivate figuring out how to write the same programs in a &quot;real&quot; programming language (e.g. C).  Working in a Windows-like environment effectively isolates the nascent programmer from where the rubber meets the road in programming to some degree, to the extent that people who learn C on Windows sometimes spend years without ever internalizing how to create a simple twenty-line program without the aid of an IDE.</p>
+</li>
+<li>
+<p>Writing quality C code requires good practices, a fairly solid understanding of the conditions in which one writes C code and the language's capabilities, care, and patience.  Writing C that seems to compile and run is much easier, once getting past the initial hurdles of learning C, but if that's all the C you'll ever write you should avoid letting any of your code out into the wild.  Bad C code can be very bad, indeed.</p>
+</li>
+</ul>
+<p>[]: https://www.alicemaz.com/writing/program.html</p>
+
+</div>
+
+      </div>
+
+      <div class="legal">
+        All original content &copy; Chad Perrin, released under the terms of the <a href="/license">DPL or COIL</a> as desired by the recipient.
+      </div>
+
+      <div class="menu footer">
+        <a href="/">Home</a>
+·
+<a href="/articles">Articles</a>
+·
+<a href="/contact">Contact</a>
+·
+<a href="/license">License</a>
+
+      </div>
+    </section>
+  </body>
+</html>
